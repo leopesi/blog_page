@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Universidade</title>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body>
+        
+        <div id="page1">
+        
+            <header>
+            
+                <div class="container">
+
+                    <nav class="navbar">
+
+                        <a href="#" class="text-center logo">
+                            <img src="./assets/img/university-vector-logo.jpg" alt="Universidade">
+                        </a>
+                        
+                        <div v-if='isLogged'  class="login">
+                            <h4>Seja bem vindo {{ username }}</h4>
+                            <a href="#" v-on:click.prevent="toggleLogin" class="logout bg-danger text-white">Fazer Logout</a>
+                        </div>
+                        <div v-else='notLogged' >
+                            <a href="#" v-on:click.prevent="toggleLogin" class="login bg-primary text-white" >Fazer Login </a>
+
+                        </div>
+                                                
+                    </nav>
+
+                </div> 
+
+            </header>
+
+            <section class="posts">
+              
+
+                <div class="container">
+
+                    <div class="row post-item">
+                        <div >
+                            <h1> {{ headerHtml.title.toUpperCase() }}</h1>
+                            <p> {{ headerHtml.post }} </p>     
+                        </div>
+                    </div>
+
+                    <div class="row post-item" v-for='post in posts'>
+
+                        <div>
+                            <img :src="post.img" :alt="post.imgTitle">
+                            <h2> {{ post.title }}</h2>
+                            <p> {{ post.post | truncate(200) }} </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <footer>
+                <p class="text-center">Visite: <a href="https://github.com/leopesi">Meu Github</a></p>
+            </footer>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+        <script>
+            let app = new Vue({
+                el: '#page1',
+                data: {
+                    isLogged: false,
+                    username: 'Joanna Luiza',
+
+                    headerHtml: 
+                        {
+                        title: 'Objetos de Estudo',
+                        post: 'Na Universidade Continental de Atlantida, nós oferecemos - assim como programas de pós graduação, mestrado, doutorado e pós-doutorado. Se você se for inteligente e dedicado, você é o tipo de pessoa que gostariamos de ter em nossos laboratórios. Veja abaixo alguns exemplos de estudos que estão sendo realizados atualmente.',
+                        }
+                    ,       
+                    
+                    posts: [
+                        {
+                            img: './assets/img/aguavinho.jpg',
+                            imgTitle: 'Post 1',
+                            title: 'Transformação de água em vinho, e os benefícios do Big Mac para sua saúde.',
+                            post: 
+                            `
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti error sunt consequuntur atque sit earum consectetur voluptatum perferendis, placeat quaerat consequatur molestiae fugiat officiis maiores dolor dolorem repudiandae quam nam?
+                            `
+                        },
+                        {
+                            img: './assets/img/brasucofrio.jpg',
+                            imgTitle: 'Post 2',
+                            title: 'Análise comportamental do cidadão brasileiro em temperaturas abaixo de 10°c',
+                            post: 
+                            `
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti error sunt consequuntur atque sit earum consectetur voluptatum perferendis, placeat quaerat consequatur molestiae fugiat officiis maiores dolor dolorem repudiandae quam nam?
+                            `
+                        },
+                        {
+                            img: './assets/img/molecular.jpg',
+                            imgTitle: 'Post 3',
+                            title: 'Reparação molecular de pessoas teletransportadas que tiveram a reintegração incompleta.',
+                            post: 
+                            `
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti error sunt consequuntur atque sit earum consectetur voluptatum perferendis, placeat quaerat consequatur molestiae fugiat officiis maiores dolor dolorem repudiandae quam nam?
+                            `
+                        },
+                    ]
+                },
+                methods:{
+                    toggleLogin(){
+                        this.isLogged = !this.isLogged;
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
