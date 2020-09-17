@@ -7,6 +7,9 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="assets/css/style.css">
+        <style>
+            
+        </style>
     </head>
     <body>
         
@@ -42,10 +45,47 @@
 
                 <div class="container">
 
+                    <hr>
+                    <h3 v-on:click='show = !show'>Estilização Dinâmica do Título</h3>
+                    <transition name='text'>
+                        <div v-if='show' class="estilizacao">
+                        
+                            <div>
+                                <div class="font">
+                                    <p >Tamanho da Fonte</p>
+                                    <input type="text"  v-model='fontSizeProp'> 
+                                </div>
+                                 <div class="font">
+                                    <p >Vermelho</p>
+                                    <input type="text" v-model='colorRed'> 
+                                 </div>
+                                 <div class="font">
+                                    <p >Verde</p>
+                                    <input type="text" v-model='colorGreen'> 
+                                 </div>
+                                 <div class="font">
+                                    <p >Azul</p>
+                                    <input type="text" v-model='colorBlue'> 
+                                 </div>
+    
+                            </div>
+                        </div>
+                    </transition>
+                    
+
                     <div class="row post-item">
-                        <div >
-                            <h1> {{ headerHtml.title.toUpperCase() }}</h1>
-                            <p> {{ headerHtml.post }} </p>     
+                        <div >        
+                            
+                            <hr>
+                            
+                            <div>
+                                <h1 @click='show2 = !show2' :style= "styleFont" > {{ headerHtml.title.toUpperCase() }}</h1>
+                                <transition name='text2'>
+                                    <div  v-if='show2'> {{ headerHtml.post }} </div>  
+                                </transition>
+
+                            </div>
+                                
                         </div>
                     </div>
 
@@ -76,9 +116,15 @@
             let app = new Vue({
                 el: '#page1',
                 data: {
+                    show: true,
+                    show2: true,
                     isLogged: false,
                     username: 'Joanna Luiza',
-
+                    fontSizeProp: 35,
+                    colorRed: 255,
+                    colorGreen: 105,
+                    colorBlue: 80,
+                    
                     headerHtml: 
                         {
                         title: 'Objetos de Estudo',
@@ -119,8 +165,21 @@
                 methods:{
                     toggleLogin(){
                         this.isLogged = !this.isLogged;
-                    }
-                }
+                        }
+                },
+                computed: {
+                    styleFont() {
+                        return {
+                            color: `rgb(
+                                ${this.colorRed},
+                                ${this.colorGreen},
+                                ${this.colorBlue})`,
+                            fontSize: this.fontSizeProp + 'px'
+                            
+                        }
+                    }        
+
+                },
             })
         </script>
     </body>

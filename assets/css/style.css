@@ -2,6 +2,23 @@ a, a:hover {
     text-decoration: none;
     color: #000;
 }
+ h3 {
+     text-align: center;
+     color: rgb(27, 10, 122);
+ }
+.estilizacao  {
+
+    text-align: center;    
+    display:table-cell;
+    
+}
+
+.font {
+    float: left;
+    padding: 10px;
+    width: 200px;
+    
+}
 
 .navbar {
     display: flex;
@@ -56,4 +73,42 @@ a, a:hover {
 
 footer {
     margin-top: 30px;
+}
+
+/* Transition */
+
+.text-enter, .text-leave-to {
+    opacity: 0;
+}
+
+.text-enter-active{
+    transition: all .3s linear;
+}
+
+.text-leave-active{
+    transition: all .5s linear;
+}
+
+/* Animation */
+
+.text2-enter-active{
+    animation: animation-text 1s;
+}
+.text2-Leave-active{
+    animation: animation-text 1s reverse;
+}
+
+@keyframes animation-text {
+    0% {
+        background: #faf9f9;
+        font-size: 20px;
+    }
+    50% {
+        background: #1db95e;
+        font-size: 50px; 
+    }
+    100% {
+        background: #f8f8f8;
+        font-size: 20px; 
+    }
 }
